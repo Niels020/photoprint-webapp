@@ -1,0 +1,27 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    min-width: 18rem;
+    background-color: white;
+    border-bottom: solid 1px black;
+    cursor: pointer;
+}
+
+.container:hover,
+.container:focus {
+    background-color: rgb(224, 255, 255);
+}
+
+.product-info,
+.product-price {
+    color: black;
+    text-align: center;
+}
+
+.product-info {
+    padding: .1rem .8rem;
+    font-size: .9rem;
+}
+
