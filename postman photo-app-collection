@@ -1,0 +1,856 @@
+{
+	"info": {
+		"_postman_id": "4e90e9a4-8691-4d78-9cfb-bb0ce256fe35",
+		"name": "Photo-app Requests",
+		"description": "All requests for the photo app. Every request or folder anding with a asterisk(\\*) is not finished or tested properly",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29382300"
+	},
+	"item": [
+		{
+			"name": "customer_address requests",
+			"item": [
+				{
+					"name": "read customer_address*",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/customer_address/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer_address",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save customer_address by customer_id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"street\": \"straatlaan\",\r\n   \"streetNumber\": \"23\",\r\n   \"areaCode\": \"1234RR\",\r\n   \"city\": \"Amsterdam\",\r\n   \"country\": \"Holland\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/customer_address/customer/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer_address",
+								"customer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save faulty customer_address by customer_id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"street\": \"s\",\r\n   \"streetNumber\": \"     \",\r\n   \"areaCode\": \"1234RRRRRRR\",\r\n   \"city\": \"AmsterdamRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR\",\r\n   \"country\": \"H\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/customer_address/customer/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer_address",
+								"customer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove customer_address",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/customer_address/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer_address",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read all customer_addresses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/customer_address/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer_address",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read all customer_adresses by customer_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/customer_address/customer/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer_address",
+								"customer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "customer requests*",
+			"item": [
+				{
+					"name": "read customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/customer/10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Jeff\",\r\n    \"lastName\": \"El Jefe\",\r\n    \"email\": \"elJefe@hotmail.com\",\r\n    \"phoneNumber\": \"o6111111334455\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/customer",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save faulty customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Jeff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\",\r\n    \"lastName\": \"El Jefe ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\",\r\n    \"email\": \"elJefe.hotmail.com\",\r\n    \"phoneNumber\": \"334455\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/customer",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update customer*",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Jeff\",\r\n    \"lastName\": \"Bridges\",\r\n    \"email\": \"TheDude@dudedoesnotmail.com\",\r\n    \"phoneNumber\": \"061122334455\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/customer/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove customer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/customer/10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/customer/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "customer_order requests",
+			"item": [
+				{
+					"name": "read customer_order by customer_order_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/customer_order/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer_order",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save customer_order by customer_id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderDate\": \"2000-11-11\",\r\n    \"orderTimeMinutesAfterMidnight\": 1000,\r\n    \"fulfilled\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/customer_order/customer/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer_order",
+								"customer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update customer_order is fulfilled",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderDate\": \"2000-11-11\",\r\n    \"orderTimeMinutesAfterMidnight\": 100,\r\n    \"fulfilled\": \"false\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/customer_order/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer_order",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete customer_order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/customer_order/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer_order",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read all customer_orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/customer_order/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer_order",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read all customer_orders by customer id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/customer_order/customer/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer_order",
+								"customer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order_definition requests",
+			"item": [
+				{
+					"name": "read order_definition",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/order_definition/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order_definition",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save order_definition",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/order_definition/customer_order/1/product_definition/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order_definition",
+								"customer_order",
+								"1",
+								"product_definition",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read all order_definitions by customer_order_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/order_definition/customer_order/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order_definition",
+								"customer_order",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "product_definition requests*",
+			"item": [
+				{
+					"name": "read product_definition",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/product_definition/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product_definition",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save product_definition",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"cake\",\r\n    \"price\": 1.25,\r\n    \"manufactoringTimeInMinutes\": 15\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/product_definition",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product_definition"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update product_definition*",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Paper 10 x 10 mat\",\r\n    \"price\": 1.25,\r\n    \"manufactoringTimeInMinutes\": 60\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/product_definition/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product_definition",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove product_definition",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/product_definition/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product_definition",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get product_definitions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/product_definition/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product_definition",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "opening_hour requests",
+			"item": [
+				{
+					"name": "read opening_hour",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/opening_hour/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"opening_hour",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update opening_hour",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"dayOfWeek\": \"monday\",\r\n    \"openingMinutesPastMidnight\": 740,\r\n    \"closingMinutesPastMidnight\": 1080\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/opening_hour/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"opening_hour",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read opening_hours",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/opening_hour/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"opening_hour",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "opening_hour_non_standard requests",
+			"item": [
+				{
+					"name": "read opening_hour_non_standard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/opening_hour_non_standard/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"opening_hour_non_standard",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2023-12-25\",\r\n    \"openingMinutesPastMidnight\": 0,\r\n    \"closingMinutesPastMidnight\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/opening_hour_non_standard",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"opening_hour_non_standard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove opening_hour_non_standard",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/opening_hour_non_standard/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"opening_hour_non_standard",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read all opening_hours_non_standard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/opening_hour_non_standard/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"opening_hour_non_standard",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user requests",
+			"item": [
+				{
+					"name": "read user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/user/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"sjakiesjors\",\r\n    \"password\": \"12341234123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/user/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
