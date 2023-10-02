@@ -1,6 +1,30 @@
-import './Product.css'
+import { useState } from "react"
 
 const Product = ({  product, handleProduct }) => {
+
+    const [ isHover, setIsHover ] = useState(false)
+
+    const styles = {
+        container: {
+            display: 'flex',
+            flexDirection: 'column',
+            margin: '0 auto',
+            minWidth: '18rem',
+            backgroundColor: isHover ? 'rgb(224, 255, 255)' : 'white',
+            borderBottom: 'solid 1px black',
+            cursor: 'pointer'
+        },
+        productInfo: {
+            color: 'black',
+            textAlign: 'center',
+            padding: '.1rem .8rem',
+            fontSize: '.9rem'
+        },
+        productPrice: {
+            color: 'black',
+            textAlign: 'center'
+        }
+    }
 
     const nameArr = product.name.split(" ")
     const type = []
@@ -32,15 +56,17 @@ const Product = ({  product, handleProduct }) => {
 
     return (
         <div 
-            className='container' 
+            style={styles.container}
+            onMouseEnter={() => setIsHover(true)}
+            onMouseLeave={() => setIsHover(false)}
             onClick={() => handleProduct(product.id)}
         >
             <p 
-                className='product-info'
+                style={styles.productInfo}
                 >{`type: ${type.join(" ")} | size: ${size.join("")} | finish: ${finish.join(" ")}`}
             </p>
             <p 
-                className='product-price'
+                style={styles.productPrice}
                 >{`${getPrice(product.price)}`}
             </p>
         </div>

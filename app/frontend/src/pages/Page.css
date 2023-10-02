@@ -4,7 +4,7 @@
 .page {
     display: flex;
     flex-direction: column;
-    padding: 0 1.2rem;
+    padding: 0 3.2rem;
 }
 
 .title {
@@ -44,49 +44,6 @@
 
 /* -------- STYLES FOR HOME PAGE -------- */
 
-.home--galery {
-    margin: 3.2rem -1.2rem 2.8rem 1.2rem;
-    display: grid;
-    grid-template-areas: 
-      "img1 img2 ."
-      "img3 img4 img5"
-      "img6 . img7";
-}
-
-.home--galery img {
-    object-fit: cover;
-    width: 100%;
-    height: 100px;
-    
-}
-
-.image-one {
-    grid-area: img1;
-}
-
-.image-two {
-    grid-area: img2;
-}
-
-.image-three {
-    grid-area: img3;
-}
-
-.image-four {
-    grid-area: img4;
-}
-
-.image-five {
-    grid-area: img5;
-}
-
-.image-six {
-    grid-area: img6;
-}
-
-.image-seven {
-    grid-area: img7;
-}
 
 .hero-bg-img {
     width: 240px;

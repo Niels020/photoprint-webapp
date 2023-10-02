@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import useFetch from '../hooks/useFetch'
 import ImageModal from '../components/ImageModal'
 import Product from '../components/Product'
@@ -8,24 +8,23 @@ import './Page.css'
 
 const Shop = () => {
 
-    const [selectedImage, setSelectedImage] = useState(null)
-    const [modalIsOpen, setModalIsOpen] = useState(false)
     const [products, error] = useFetch('http://localhost:8080/product_definition/all')
-  
-  
-    if(error) console.log(error)
+    const [selectedImage, setSelectedImage] = useState(null)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [orderedProduct, setOrderedProduct] = useState({
+        id: null,
+        quantity: null
+    })
 
-
-    const openModal = () => setModalIsOpen(true)
+    const openModal = () => setIsModalOpen(true)
+    const closeModal = () => setIsModalOpen(false)
   
-
-    const closeModal = () => setModalIsOpen(false)
-  
-
     const handleImageUpload = (e) => {
         const file = e.target.files[0]
 
-        file && setSelectedImage(URL.createObjectURL(file))
+        if(file) {
+            setSelectedImage(URL.createObjectURL(file))
+        }
     }
 
     const handleProduct = (id) => {
@@ -73,11 +72,12 @@ const Shop = () => {
             </button> }
 
             <ImageModal
-                isOpen={ modalIsOpen }
+                isOpen={ isModalOpen }
                 onClose={ closeModal }
                 imageUrl={ selectedImage }
             />
 
+            { // selectedImage &&
             <form className='shop--form'>
 
                 <div className='shop--form--products'>
@@ -93,7 +93,8 @@ const Shop = () => {
                             )
                         })}
                     </div>
-                </div>
+                </div> 
+
                 <div className='shop--form--quantity'>
                     <label 
                         htmlFor='shop--form--quantity-input'
@@ -107,9 +108,10 @@ const Shop = () => {
                         min={1}
                     />
                 </div>
-                
-                
-            </form>
+
+                <button>add to cart</button>
+
+            </form> }
 
 
 

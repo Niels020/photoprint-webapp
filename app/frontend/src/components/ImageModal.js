@@ -1,11 +1,31 @@
 import React from 'react';
 import Modal from 'react-modal';
-import './ImageModal.css'
 
 Modal.setAppElement('#root');
 
 function ImageModal({ isOpen, onClose, imageUrl }) {
     
+    const styles = {
+        modal: {
+            display: 'flex',
+            flexDirection: 'column'
+        },
+        title: {
+            color: 'black',
+            alignSelf: 'center',
+            fontSize: '2.4rem',
+            fontFamily: `'Chakra Petch', sans-serif`
+        },
+        button: {
+            color: 'black',
+            alignSelf: 'end',
+            width: '4rem',
+            cursor: 'pointer'
+        },
+        image: {
+            width: '100%'
+        }
+    }
 
     return (
 
@@ -14,14 +34,14 @@ function ImageModal({ isOpen, onClose, imageUrl }) {
             onRequestClose={onClose}
             contentLabel="Image Preview"
         >
-            <div className='content'>
-                <h2 className='title'>preview</h2>
+            <div style={styles.modal}>
+                <h2 style={styles.title}>preview</h2>
 
-                <button className='button' onClick={onClose}>close</button>
+                <button style={styles.button} onClick={onClose}>close</button>
 
                 {imageUrl && (
                     <img
-                        className='image'
+                        style={styles.image}
                         src={imageUrl}
                         alt="Uploaded"
                     />

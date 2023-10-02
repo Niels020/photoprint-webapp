@@ -1,11 +1,5 @@
 import { Link } from 'react-router-dom'
-import galeryOne from '../img/galery_1.jpg'
-import galeryTwo from '../img/galery_2.jpg'
-import galeryThree from '../img/galery_3.jpg'
-import galeryFour from '../img/galery_4.jpg'
-import galeryFive from '../img/galery_5.jpg'
-import galerySix from '../img/galery_6.jpg'
-import galerySeven from '../img/galery_7.jpg'
+import Galery from '../components/Galery'
 import './Page.css'
 
 const Home = () => {
@@ -13,25 +7,19 @@ const Home = () => {
     return (
         <div className='page home'>
             <div className='hero-bg-img'></div>
-            <h1 className='title home--title'
+            <h1 className='title'
                 >Photo World Pro
             </h1>
-            <p className='paragraph home--intro'
+            <p className='paragraph'
                 >We are Photo World. Cutting edge technology, 
                 decades of experience and out-of-the-box service 
                 sets us apart in the world on high quality photo printing. 
                 We love helping professionals, hobbyists and everyone else 
                 to transform there images into beautiful prints.
             </p>
-            <div className='home--galery'>
-                <img className='image-one' src={galeryOne} alt=''/>
-                <img className='image-two' src={galeryTwo} alt=''/>
-                <img className='image-three' src={galeryThree} alt=''/>
-                <img className='image-four' src={galeryFour} alt=''/>
-                <img className='image-five' src={galeryFive} alt=''/>
-                <img className='image-six' src={galerySix} alt=''/>
-                <img className='image-seven' src={galerySeven} alt=''/>
-            </div>
+
+            <Galery />
+
             <p className='paragraph'
                 >In our shop you can find everything about formats, finishes 
                 and frames to perfectly create your own masterpiece. There 
