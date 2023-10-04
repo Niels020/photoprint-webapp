@@ -22,21 +22,24 @@ import nl.calco.photoapp.service.OrderDefinitionService;
 @RestController
 @RequestMapping("/order_definition")
 public class OrderDefinitionController {
-    
-    OrderDefinitionService orderDefinitionService;
+
+    OrderDefinitionService service;
 
     @GetMapping("/{id}")
     public ResponseEntity<OrderDefinition> getOrderDefinition(@PathVariable Long id) {
-        return new ResponseEntity<>(orderDefinitionService.getOrderDefinition(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.getOrderDefinition(id), HttpStatus.OK);
     }
 
     @PostMapping("/customer_order/{customerOrderId}/product_definition/{productDefinitionId}")
-    public ResponseEntity<OrderDefinition> saveOrderDefinition(@RequestBody @Valid OrderDefinition orderDefinition, @PathVariable Long customerOrderId, @PathVariable Long productDefinitionId) {
-        return new ResponseEntity<>(orderDefinitionService.saveOrderDefinition(orderDefinition, customerOrderId, productDefinitionId), HttpStatus.CREATED);
+    public ResponseEntity<OrderDefinition> saveOrderDefinition(@RequestBody @Valid OrderDefinition orderDefinition,
+            @PathVariable Long customerOrderId, @PathVariable Long productDefinitionId) {
+        return new ResponseEntity<>(service.saveOrderDefinition(orderDefinition, customerOrderId, productDefinitionId),
+                HttpStatus.CREATED);
     }
 
     @GetMapping("/customer_order/{customerOrderId}")
-    public ResponseEntity<List<OrderDefinition>> getAllOrderDefinitionsByCustomerOrderId(@PathVariable Long customerOrderId) {
-        return new ResponseEntity<>(orderDefinitionService.getAllOrderDefinitionsByCustomerOrderId(customerOrderId), HttpStatus.OK);
+    public ResponseEntity<List<OrderDefinition>> getAllOrderDefinitionsByCustomerOrderId(
+            @PathVariable Long customerOrderId) {
+        return new ResponseEntity<>(service.getAllOrderDefinitionsByCustomerOrderId(customerOrderId), HttpStatus.OK);
     }
 }

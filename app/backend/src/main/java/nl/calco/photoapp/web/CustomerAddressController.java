@@ -23,34 +23,34 @@ import nl.calco.photoapp.service.CustomerAddressService;
 @RestController
 @RequestMapping("/customer_address")
 public class CustomerAddressController {
-    
-    CustomerAddressService customerAddressService;
+
+    CustomerAddressService service;
 
     @GetMapping("/{id}")
     public ResponseEntity<CustomerAddress> getCustomerAddress(@PathVariable Long id) {
-        return new ResponseEntity<>(customerAddressService.getCustomerAddress(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.getCustomerAddress(id), HttpStatus.OK);
     }
 
     @PostMapping("/customer/{customerId}")
-    public ResponseEntity<CustomerAddress> saveAddress(@RequestBody @Valid CustomerAddress customerAddress, @PathVariable Long customerId) {
-        return new ResponseEntity<>(customerAddressService.saveCustomerAddress(customerAddress, customerId), HttpStatus.CREATED);
+    public ResponseEntity<CustomerAddress> saveAddress(@RequestBody @Valid CustomerAddress customerAddress,
+            @PathVariable Long customerId) {
+        return new ResponseEntity<>(service.saveCustomerAddress(customerAddress, customerId), HttpStatus.CREATED);
     }
-       
+
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteCustomerAddress(@PathVariable Long id) {
-        customerAddressService.deleteCustomerAddress(id);
+        service.deleteCustomerAddress(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<CustomerAddress>> getAllCustomerAddresses() {
-        return new ResponseEntity<>(customerAddressService.getAllCustomerAddresses(), HttpStatus.OK);
-    } 
-    
+        return new ResponseEntity<>(service.getAllCustomerAddresses(), HttpStatus.OK);
+    }
+
     @GetMapping("/customer/{customerId}")
     public ResponseEntity<List<CustomerAddress>> getAllCustomerAddressesByCustomerId(@PathVariable Long customerId) {
-        return new ResponseEntity<>(customerAddressService.getAllCustomerAddressesByCustomerId(customerId), HttpStatus.OK);
-    }  
+        return new ResponseEntity<>(service.getAllCustomerAddressesByCustomerId(customerId), HttpStatus.OK);
+    }
 
 }
-

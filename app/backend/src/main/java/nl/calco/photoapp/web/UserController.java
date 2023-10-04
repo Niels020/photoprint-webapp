@@ -21,22 +21,22 @@ import nl.calco.photoapp.service.UserService;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    
-    UserService userService;
+
+    UserService service;
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id) {
-        return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.getUser(id), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<User> saveUser(@RequestBody @Valid User user) {
-        return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
+        return new ResponseEntity<>(service.saveUser(user), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
+        service.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

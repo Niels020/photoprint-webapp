@@ -15,7 +15,7 @@ import nl.calco.photoapp.repository.CustomerRepository;
 public class CustomerServiceImpl implements CustomerService {
 
     CustomerRepository customerRepository;
-    
+
     @Override
     public Customer getCustomer(Long id) {
         Optional<Customer> customer = customerRepository.findById(id);
@@ -31,7 +31,8 @@ public class CustomerServiceImpl implements CustomerService {
     public void deleteCustomer(Long id) {
         if (customerRepository.existsById(id)) {
             customerRepository.deleteById(id);
-        } else throw new EntityNotFoundException(id, Customer.class);
+        } else
+            throw new EntityNotFoundException(id, Customer.class);
     }
 
     @Override
@@ -40,9 +41,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     static Customer unwrapCustomer(Optional<Customer> entity, Long id) {
-        if (entity.isPresent()) return entity.get();
-        else throw new EntityNotFoundException(id, Customer.class);
+        if (entity.isPresent())
+            return entity.get();
+        else
+            throw new EntityNotFoundException(id, Customer.class);
     }
-
 
 }

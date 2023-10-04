@@ -23,27 +23,28 @@ import nl.calco.photoapp.service.OpeningHourNonStandardService;
 @RestController
 @RequestMapping("/opening_hour_non_standard")
 public class OpeningHourNonStandardController {
-     
-    OpeningHourNonStandardService openingHourNonStandardService;
+
+    OpeningHourNonStandardService service;
 
     @GetMapping("/{id}")
     public ResponseEntity<OpeningHourNonStandard> getOpeningHourNonStandard(@PathVariable Long id) {
-        return new ResponseEntity<>(openingHourNonStandardService.getOpeningHourNonStandard(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.getOpeningHourNonStandard(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<OpeningHourNonStandard> saveOpeningHourNonStandard(@RequestBody @Valid OpeningHourNonStandard openingHourNonStandard) {
-        return new ResponseEntity<>(openingHourNonStandardService.saveOpeningHourNonStandard(openingHourNonStandard), HttpStatus.CREATED);
+    public ResponseEntity<OpeningHourNonStandard> saveOpeningHourNonStandard(
+            @RequestBody @Valid OpeningHourNonStandard openingHourNonStandard) {
+        return new ResponseEntity<>(service.saveOpeningHourNonStandard(openingHourNonStandard), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteOpeningHourNonStandard(@PathVariable Long id) {
-        openingHourNonStandardService.deleteOpeningHourNonStandard(id);
+        service.deleteOpeningHourNonStandard(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<OpeningHourNonStandard>> getOpeningHoursNonStandard() {
-        return new ResponseEntity<>(openingHourNonStandardService.getOpeningHoursNonStandard(), HttpStatus.OK);
+        return new ResponseEntity<>(service.getOpeningHoursNonStandard(), HttpStatus.OK);
     }
 }

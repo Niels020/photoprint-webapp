@@ -23,28 +23,28 @@ import nl.calco.photoapp.service.CustomerService;
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
-     
-    CustomerService customerService;
+
+    CustomerService service;
 
     @GetMapping("/{id}")
     public ResponseEntity<Customer> getCustomer(@PathVariable Long id) {
-        return new ResponseEntity<>(customerService.getCustomer(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.getCustomer(id), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<Customer> saveCustomer(@RequestBody @Valid Customer customer) {
-        return new ResponseEntity<>(customerService.saveCustomer(customer), HttpStatus.CREATED);
+        return new ResponseEntity<>(service.saveCustomer(customer), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable Long id) {
-        customerService.deleteCustomer(id);
+        service.deleteCustomer(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<Customer>> getCustomers() {
-        return new ResponseEntity<>(customerService.getCustomers(), HttpStatus.OK);
+        return new ResponseEntity<>(service.getCustomers(), HttpStatus.OK);
     }
 
 }

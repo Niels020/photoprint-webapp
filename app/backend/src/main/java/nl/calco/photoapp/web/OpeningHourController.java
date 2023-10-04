@@ -22,22 +22,23 @@ import nl.calco.photoapp.service.OpeningHourService;
 @RestController
 @RequestMapping("/opening_hour")
 public class OpeningHourController {
-    
-    OpeningHourService openingHourService;
+
+    OpeningHourService service;
 
     @GetMapping("/{id}")
     public ResponseEntity<OpeningHour> getOpeningHour(@PathVariable Long id) {
-        return new ResponseEntity<>(openingHourService.getOpeningHour(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.getOpeningHour(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OpeningHour> updateOpeningHour(@RequestBody @Valid OpeningHour openingHour, @PathVariable Long id) {
-        return new ResponseEntity<>(openingHourService.updateOpeningHour(openingHour.getOpeningMinutesPastMidnight(), openingHour.getClosingMinutesPastMidnight(), id), HttpStatus.OK);
+    public ResponseEntity<OpeningHour> updateOpeningHour(@RequestBody @Valid OpeningHour openingHour,
+            @PathVariable Long id) {
+        return new ResponseEntity<>(service.updateOpeningHour(openingHour.getOpeningMinutesPastMidnight(),
+                openingHour.getClosingMinutesPastMidnight(), id), HttpStatus.OK);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<OpeningHour>> getOpeningHours() {
-        return new ResponseEntity<>(openingHourService.getOpeningHours(), HttpStatus.OK);
+        return new ResponseEntity<>(service.getOpeningHours(), HttpStatus.OK);
     }
 }
-

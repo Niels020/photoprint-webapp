@@ -23,27 +23,27 @@ import nl.calco.photoapp.service.ProductDefinitionService;
 @RestController
 @RequestMapping("/product_definition")
 public class ProductDefinitionController {
-    
-    ProductDefinitionService productDefinitionService;
+
+    ProductDefinitionService service;
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductDefinition> getProductDefinition(@PathVariable Long id) {
-        return new ResponseEntity<>(productDefinitionService.getProductDefinition(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.getProductDefinition(id), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<ProductDefinition> saveProduct(@RequestBody @Valid ProductDefinition productDefinition) {
-        return new ResponseEntity<>(productDefinitionService.saveProductDefinition(productDefinition), HttpStatus.CREATED);
+        return new ResponseEntity<>(service.saveProductDefinition(productDefinition), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteProductDefinition(@PathVariable Long id) {
-        productDefinitionService.deleteProductDefinition(id);
+        service.deleteProductDefinition(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<ProductDefinition>> getProductDefinitions() {
-        return new ResponseEntity<>(productDefinitionService.getProductDefinitions(), HttpStatus.OK);
+        return new ResponseEntity<>(service.getProductDefinitions(), HttpStatus.OK);
     }
 }

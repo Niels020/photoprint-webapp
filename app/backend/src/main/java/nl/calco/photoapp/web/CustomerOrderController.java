@@ -24,38 +24,41 @@ import nl.calco.photoapp.service.CustomerOrderService;
 @RestController
 @RequestMapping("/customer_order")
 public class CustomerOrderController {
-    
-    CustomerOrderService customerOrderService;
+
+    CustomerOrderService service;
 
     @GetMapping("/{id}")
     public ResponseEntity<CustomerOrder> getCustomerOrder(@PathVariable Long id) {
-        return new ResponseEntity<>(customerOrderService.getCustomerOrder(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.getCustomerOrder(id), HttpStatus.OK);
     }
 
     @PostMapping("/customer/{customerId}")
-    public ResponseEntity<CustomerOrder> saveCustomerOrder(@RequestBody @Valid CustomerOrder customerOrder, @PathVariable Long customerId) {
-        return new ResponseEntity<>(customerOrderService.saveCustomerOrder(customerOrder, customerId), HttpStatus.CREATED);
+    public ResponseEntity<CustomerOrder> saveCustomerOrder(@RequestBody @Valid CustomerOrder customerOrder,
+            @PathVariable Long customerId) {
+        return new ResponseEntity<>(service.saveCustomerOrder(customerOrder, customerId), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomerOrder> updateFulFilledCustomerOrder(@RequestBody @Valid CustomerOrder customerOrder, @PathVariable Long id) {
-        return new ResponseEntity<>(customerOrderService.updateFulFilledCustomerOrder(customerOrder.getFulfilled(), id), HttpStatus.OK);
+    public ResponseEntity<CustomerOrder> updateFulFilledCustomerOrder(@RequestBody @Valid CustomerOrder customerOrder,
+            @PathVariable Long id) {
+        return new ResponseEntity<>(service.updateFulFilledCustomerOrder(customerOrder.getFulfilled(), id),
+                HttpStatus.OK);
     }
-       
+
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteCustomerOrder(@PathVariable Long id) {
-        customerOrderService.deleteCustomerOrder(id);
+        service.deleteCustomerOrder(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<CustomerOrder>> getAllCustomerOrders() {
-        return new ResponseEntity<>(customerOrderService.getAllCustomerOrders(), HttpStatus.OK);
-    }    
+        return new ResponseEntity<>(service.getAllCustomerOrders(), HttpStatus.OK);
+    }
 
     @GetMapping("/customer/{customerId}")
     public ResponseEntity<List<CustomerOrder>> getAllCustomerOrdersByCustomerId(@PathVariable Long customerId) {
-        return new ResponseEntity<>(customerOrderService.getAllCustomerOrdersByCustomerId(customerId), HttpStatus.OK);
-    }    
+        return new ResponseEntity<>(service.getAllCustomerOrdersByCustomerId(customerId), HttpStatus.OK);
+    }
 
 }
