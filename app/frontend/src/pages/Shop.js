@@ -5,11 +5,10 @@ import Product from '../components/Product'
 import './Page.css'
 
 
-
 const Shop = () => {
 
     const [products, error] = useFetch('http://localhost:8080/product_definition/all')
-    const [selectedImage, setSelectedImage] = useState(null)
+    const [selectedImage, setSelectedImage] = useState(true)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [orderedProduct, setOrderedProduct] = useState({
         id: null,
@@ -60,7 +59,7 @@ const Shop = () => {
             <label 
                 htmlFor='input' 
                 className='input-label'
-            >{ selectedImage ? 'image uploaded' : 'upload your image here' }
+            >{ selectedImage ? 'image uploaded' : 'upload image' }
             </label>
 
             { selectedImage && 
@@ -68,7 +67,7 @@ const Shop = () => {
                 className='preview-btn' 
                 type='button' 
                 onClick={() => openModal()}
-                >preview
+                >view image
             </button> }
 
             <ImageModal
@@ -77,7 +76,7 @@ const Shop = () => {
                 imageUrl={ selectedImage }
             />
 
-            { // selectedImage &&
+            { selectedImage &&
             <form className='shop--form'>
 
                 <div className='shop--form--products'>

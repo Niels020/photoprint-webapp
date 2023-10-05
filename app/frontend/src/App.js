@@ -35,22 +35,35 @@ const App = () => {
 const Root = () => {
     return (
         <div className='body'>
+
             <nav className="nav">
-                <ul>
-                    <li>
-                        <Link to={`/`}>Home</Link>
+                <div className='nav-logo'><Link to={`/`}>LOGO</Link></div>
+                <ul className='nav-links'>
+                    <li className='nav-link'>
+                        <Link to={`/`}>HOME</Link>
                     </li>
-                    <li>
-                        <Link to={`shop`}>Shop</Link>
+                    <li className='nav-link'>
+                        <Link to={`shop`}>SHOP</Link>
                     </li>
-                    <li>
-                        <Link to={`about`}>About Us</Link>
+                    <li className='nav-link'>
+                        <Link to={`about`}>ABOUT US</Link>
                     </li>
                 </ul>
             </nav>
-            <div className="pages">
-                <Outlet />
+
+            <div className='container'>
+                <div className="pages">
+                    <Outlet />
+                </div>
+
+                <div className='footer'>
+                    <div>facebook</div>
+                    <div>twitter</div>
+                    <div>insta</div>
+                </div>
             </div>
+            
+
         </div>
     )
 }

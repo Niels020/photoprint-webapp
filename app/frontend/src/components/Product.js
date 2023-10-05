@@ -10,7 +10,7 @@ const Product = ({  product, handleProduct }) => {
             flexDirection: 'column',
             margin: '0 auto',
             minWidth: '18rem',
-            backgroundColor: isHover ? 'rgb(224, 255, 255)' : 'white',
+            backgroundColor: isHover ? 'rgb(120, 237, 237)' : 'white',
             borderBottom: 'solid 1px black',
             cursor: 'pointer'
         },

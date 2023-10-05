@@ -1,3 +1,5 @@
+/* ------- GENERAL STYLES + LAYOUT ------- */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,17 +11,72 @@
 .body {
     width: 100%;
     min-width: 300px;
-    height: 100vh;
-    overflow-y: scroll;
+    min-height: 100vh;
     font-family: 'Oswald', sans-serif;
 }
 
 .nav {
-    height: 4rem;
+    height: 3.4rem;
+    background-color: #000000;
+    border-bottom: #3b3b3b 1px solid;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.container {
+    height: calc(100vh - 3.4rem);
+    overflow-y: scroll;
+    background-color: #000000;
+    background-image: linear-gradient(340deg,  #3b3b3b 0%, #000000 55%);
 }
 
 .pages {
-    min-height: calc(100% - 4rem);
-    background-color: #000000;
-    background-image: linear-gradient(340deg,  #3b3b3b 0%, #000000 55%);
+    min-height: calc(100vh - 5.4rem);
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    border-top: #3b3b3b 1px solid;
+    height: 2rem;
+}
+
+/* ------- NAV ------- */
+
+.nav-logo, 
+.nav-links {
+    margin: .8rem 1.6rem;
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-link {
+    list-style: none;
+    margin-left: .8rem;
+}
+
+.nav-logo > *,
+.nav-link > * {
+    text-decoration: none;
+}
+
+.nav-logo > *:hover,
+.nav-logo > *:focus,
+.nav-link > *:hover,
+.nav-link > *:focus {
+    color: rgb(120, 237, 237);
+}
+
+/* ------- PAGES ------- */
+
+
+
+/* ------- FOOTER ------- */
+
+.footer > * {
+    margin-right: 1rem;
+    
 }

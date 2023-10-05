@@ -4,7 +4,7 @@
 .page {
     display: flex;
     flex-direction: column;
-    padding: 0 3.2rem;
+    padding: 0 3.2rem 2rem;
 }
 
 .title {
@@ -32,13 +32,13 @@
     text-align: center;
     text-decoration: none;
     letter-spacing: 0;
-    transition: width 400ms, letter-spacing 400ms;
+    transition: letter-spacing 400ms;
 }
 
 .link:hover, 
 .link:focus {
-    width: 9.4rem;
-    letter-spacing: 1px
+    letter-spacing: 1px;
+    background-color: rgb(120, 237, 237);;
 }
 
 
@@ -71,8 +71,10 @@
     width: auto;
     cursor: pointer;
     margin: .4rem auto 0;
-    padding: 0 1rem;
-    min-width: 10rem;
+    padding: .2rem 1rem;
+    min-width: 12rem;
+    text-transform: uppercase;
+
 }
 
 .input-label {
@@ -85,10 +87,8 @@
 }
 
 .input-label:hover,
-.preview-btn:hover,
-.input-label:focus,
-.preview-btn:focus {
-    background-color: rgb(224, 224, 224);
+.preview-btn:hover {
+    background-color: rgb(120, 237, 237);;
 }
 
 .shop--form {
@@ -96,6 +96,7 @@
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
+    border: 1px solid white;
 }
 
 .shop--form--products,
@@ -107,7 +108,8 @@
 
 .shop--form--products-scroll {
     margin: 0 auto;
-    max-height: 10rem;
+    border-radius: 3px;
+    max-height: 12rem;
     overflow-y: scroll;
     overflow-x: hidden;
 }
