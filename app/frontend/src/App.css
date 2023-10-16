@@ -1,48 +1,146 @@
-/* ------- GENERAL STYLES + LAYOUT ------- */
+/* ------- GENERAL STYLES ------- */
+
+:root {
+    --color-main-bg: rgb(0, 0, 0);
+    --color-main-text: rgb(246, 246, 246);
+    --color-main-accent: rgb(120, 237, 237);
+    --color-main-accent-second: rgb(87, 79, 79);
+    --color-second-bg: rgb(246, 246, 246);
+    --color-second-text: rgb(0, 0, 0);
+    --font-size-title: 2.4rem;
+    --font-size-subtitle: 2.2rem;
+    --font-size-button: 1.2rem;
+    --font-size-link: .9rem;
+    --font-size-p: 1rem;
+    --font-line-height-p: 1.6rem;
+    --font-letter-spacing-p: .15rem;
+
+    --font-family-default: 'Oswald', sans-serif;
+    --font-family-title: 'Chakra Petch', sans-serif;
+}
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-size: 16px;
-    color: rgb(246, 246, 246);
+    color: var(--color-main-text);
+    font-family: var(--font-family-default);
 }
 
-.body {
+image {
+    max-width: 100%;
+    display: block;
+}
+
+.scroll-container {
+    background-color: var(--color-main-bg);
+    background-image: linear-gradient(340deg, var(--color-main-accent-second) 0%, var(--color-main-bg) 55%);
+}
+
+.hero-bg-img {
+    width: 240px;
+    height: 240px;
+    opacity: .5;
+    border-radius: 100%;
+    margin: auto;
+    background-image: url("./img/hero.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+/* ------- GENERAL CLASSES ------- */
+
+
+.page {
+
+    gap: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding: 0 2.2rem;
+}
+
+.title {
+    font-size: var(--font-size-title);
+}
+
+.subtitle {
+    font-size: var(--font-size-subtitle);
+}
+
+.title,
+.subtitle {
+    font-family: var(--font-family-title);
+}
+
+.paragraph {
+    font-size: var(--font-size-p);
+    line-height: var(--font-line-height-p);
+    letter-spacing: var(--font-letter-spacing-p);
+}
+
+.clickable,
+.button {
+    width: 9rem;
+    padding: .1rem 0;
+    font-size: var(--font-size-button);
+    text-transform: uppercase;
+    border-radius: 8px;
+    text-align: center;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.clickable {
+    text-decoration: none;
+}
+
+.button {
+    border: none;
+}
+
+.clickable:hover, 
+.button:hover {
+    background-color: var(--color-main-accent);
+}
+
+/* ------- LAYOUT ------- */
+
+.container {
     width: 100%;
     min-width: 300px;
     min-height: 100vh;
-    font-family: 'Oswald', sans-serif;
 }
 
-.nav {
+nav {
     height: 3.4rem;
-    background-color: #000000;
-    border-bottom: #3b3b3b 1px solid;
-    display: flex;
-    justify-content: space-between;
+    position: fixed;
     width: 100%;
+    z-index: 1000;
 }
 
-.container {
-    height: calc(100vh - 3.4rem);
-    overflow-y: scroll;
-    background-color: #000000;
-    background-image: linear-gradient(340deg,  #3b3b3b 0%, #000000 55%);
-}
-
-.pages {
+main {
+    padding-top: 3.4rem;
     min-height: calc(100vh - 5.4rem);
 }
 
-.footer {
-    display: flex;
-    justify-content: flex-end;
-    border-top: #3b3b3b 1px solid;
+footer {
+    margin-top: 6rem;
     height: 2rem;
 }
 
-/* ------- NAV ------- */
+/* ------- NAVIGATION STYLES ------- */
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--color-main-bg);
+    border-bottom: var(--color-main-accent-second) 1px solid;
+}
 
 .nav-logo, 
 .nav-links {
@@ -53,28 +151,29 @@
     display: flex;
 }
 
-.nav-link {
+.nav-links > li {
     list-style: none;
     margin-left: .8rem;
 }
 
-.nav-logo > *,
-.nav-link > * {
+.nav-link {
     text-decoration: none;
+    text-transform: uppercase;
+    font-size: var(--font-size-link);
 }
 
-.nav-logo > *:hover,
-.nav-logo > *:focus,
-.nav-link > *:hover,
-.nav-link > *:focus {
-    color: rgb(120, 237, 237);
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--color-main-accent);
 }
-
-/* ------- PAGES ------- */
-
-
 
 /* ------- FOOTER ------- */
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    border-top: var(--color-main-accent-second) solid 1px;
+}
 
 .footer > * {
     margin-right: 1rem;

@@ -1,22 +1,13 @@
 import { useState } from 'react'
-import useFetch from '../hooks/useFetch'
 import ImageModal from '../components/ImageModal'
-import Product from '../components/Product'
-import './Page.css'
+import OrderForm from '../forms/OrderForm'
 
 
 const Shop = () => {
 
-    const [products, error] = useFetch('http://localhost:8080/product_definition/all')
-    const [selectedImage, setSelectedImage] = useState(true)
+    const [selectedImage, setSelectedImage] = useState(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [orderedProduct, setOrderedProduct] = useState({
-        id: null,
-        quantity: null
-    })
-
-    const openModal = () => setIsModalOpen(true)
-    const closeModal = () => setIsModalOpen(false)
+    
   
     const handleImageUpload = (e) => {
         const file = e.target.files[0]
@@ -26,20 +17,14 @@ const Shop = () => {
         }
     }
 
-    const handleProduct = (id) => {
-        products.map(product => {
-            if(product.id === id) console.log(id)
-        })
-    }
-
 
     return (
 
-        <div className='page shop'>
+        <div className='page'>
 
             <div className='hero-bg-img'></div>
 
-            <h2 className='title'>photo shop</h2>
+            <h2 className='subtitle'>photo shop</h2>
 
             <p className='paragraph'
                 >This is our shop. In just a few simple steps we can start 
@@ -49,68 +34,36 @@ const Shop = () => {
             </p>
 
             <input
-                className='img-input'
+                style={{display: 'none'}}
                 id='input'
                 type='file'
                 accept='image/*'
                 onChange={ handleImageUpload }
             />
 
-            <label 
+            <label
+                className='clickable' 
                 htmlFor='input' 
-                className='input-label'
-            >{ selectedImage ? 'image uploaded' : 'upload image' }
+                >select image
             </label>
 
-            { selectedImage && 
-            <button 
-                className='preview-btn' 
+             
+            {selectedImage && <button 
+                className='button' 
                 type='button' 
-                onClick={() => openModal()}
+                onClick={() => setIsModalOpen(true)}
                 >view image
             </button> }
 
             <ImageModal
                 isOpen={ isModalOpen }
-                onClose={ closeModal }
+                onClose={ () => setIsModalOpen(false) }
                 imageUrl={ selectedImage }
             />
 
-            { selectedImage &&
-            <form className='shop--form'>
 
-                <div className='shop--form--products'>
-                    <p>our print products</p>
-                    <div className='shop--form--products-scroll'>
-                        { products && products.map(product => {
-                            return (
-                                <Product 
-                                    key={product.id} 
-                                    product={product}
-                                    handleProduct={handleProduct}
-                                />
-                            )
-                        })}
-                    </div>
-                </div> 
 
-                <div className='shop--form--quantity'>
-                    <label 
-                        htmlFor='shop--form--quantity-input'
-                        >how many would you like to order?
-                    </label>
-                    <input 
-                        id='shop--form--quantity-input'
-                        className='shop--form--quantity-input' 
-                        type='number'
-                        max={20}
-                        min={1}
-                    />
-                </div>
-
-                <button>add to cart</button>
-
-            </form> }
+            <OrderForm /> 
 
 
 

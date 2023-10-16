@@ -34,33 +34,59 @@ const App = () => {
 
 const Root = () => {
     return (
-        <div className='body'>
+        <div className='container'>
 
             <nav className="nav">
-                <div className='nav-logo'><Link to={`/`}>LOGO</Link></div>
-                <ul className='nav-links'>
-                    <li className='nav-link'>
-                        <Link to={`/`}>HOME</Link>
-                    </li>
-                    <li className='nav-link'>
-                        <Link to={`shop`}>SHOP</Link>
-                    </li>
-                    <li className='nav-link'>
-                        <Link to={`about`}>ABOUT US</Link>
-                    </li>
-                </ul>
-            </nav>
 
-            <div className='container'>
-                <div className="pages">
-                    <Outlet />
+                <div className='nav-logo'>
+                    <Link 
+                        className='nav-link' 
+                        to={`/`}
+                        >LOGO
+                    </Link>
                 </div>
 
-                <div className='footer'>
+                <ul className='nav-links'>
+
+                    <li>
+                        <Link 
+                            className='nav-link' 
+                            to={`/`}
+                            >home
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link 
+                            className='nav-link' 
+                            to={`shop`}
+                            >shop
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link 
+                            className='nav-link' 
+                            to={`about`}
+                            >about us
+                        </Link>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+            <div className='scroll-container'>
+
+                <main>
+                    <Outlet />
+                </main>
+
+                <footer className='footer'>
                     <div>facebook</div>
                     <div>twitter</div>
                     <div>insta</div>
-                </div>
+                </footer>
             </div>
             
 
