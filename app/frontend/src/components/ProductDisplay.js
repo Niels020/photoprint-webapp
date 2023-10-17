@@ -1,20 +1,15 @@
-import { useState } from "react"
 
+const ProductDisplay = ({ product }) => {
 
-const ProductDisplay = ({  product, selectProduct }) => {
-
-    const [ isHover, setIsHover ] = useState(false)
-
-
-    const getProductName = (name) => {
-        const nameArr = name.split(" ")
-        const type = []
+    const getProductInfo = (info) => {
+        const infoArr = info.split(" ")
+        const name = []
         const size = []
         const finish = []
 
-        nameArr.map((el, i) => {
+        infoArr.map((el, i) => {
             if(i === 0) {
-                type.push(el)
+                name.push(el)
             } else if(i < 4) {
                 size.push(el)
             } else {
@@ -22,10 +17,8 @@ const ProductDisplay = ({  product, selectProduct }) => {
             }
         })
 
-        return `
-            type: ${type.join(" ")} | size: ${size.join("")} | finish: ${finish.join(" ")}`
+        return [ name.join(" "), size.join(""), finish.join(" ") ]
     }
-
 
     const getProductPrice = (price) => {
         const euro = Intl.NumberFormat('en-DE', {
@@ -37,19 +30,17 @@ const ProductDisplay = ({  product, selectProduct }) => {
         return euro.format(price)
     }
 
+    const [ productName, productSize, productFinish ] = getProductInfo(product.name)
+    const productPrice = getProductPrice(product.price)
+
     return (
-
-        <div
-            onClick={() => selectProduct(product.id)}
-        >
-
-            <p>{getProductName(product.name)}</p>
-
-            <p>{getProductPrice(product.price)}</p>
-
+        <div>
+            <p>{productName}</p>
+            <p>{productSize}</p>
+            <p>{productFinish}</p>
+            <p>{productPrice}</p>
         </div>
     )
-
 }
 
 export default ProductDisplay

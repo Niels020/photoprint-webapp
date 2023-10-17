@@ -5,32 +5,33 @@ import './OrderForm.css'
 
 const OrderForm = () => {
 
-    const [orderData, setOrderData] = useState({id: null, quantity: '1'})
+    const [order, setOrder] = useState({id: null, quantity: '1'})
     const [data, isLoading, error] = useFetch('http://localhost:8080/product_definition/all')
 
 
-    const selectProduct = (id) => {
+   const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(order)
+    }
+
+    const handleProduct = (id) => {
 
         data.map(product => {
             if(product.id === id) {
-                setOrderData(prevOrderData => ({ ...prevOrderData, id: product.id}))
+                setOrder(prevOrder => ({ ...prevOrder, id: product.id}))
             }
-        })
+        })    
     }
 
-    const selectQuantity = (e) => {
-        setOrderData(prevOrderData => ({ ...prevOrderData, quantity: e.target.value }))
+    const resetProductId = () => {
+        setOrder(prevOrder => ({ ...prevOrder, id: null}))
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(orderData)
+    const handleQuantity = (e) => {
+        setOrder(prevOrder => ({ ...prevOrder, quantity: e.target.value }))
     }
 
-    const clearOrderDataId = () => {
-        setOrderData(prevOrderData => ({...prevOrderData, id: null}))
-    }
-
+ 
     return (
         <form
             className='form-container' 
@@ -39,43 +40,32 @@ const OrderForm = () => {
 
             <p 
                 className='product-label'
-            >{!orderData.id ? 'select format:' : 'selected'}
+            >{!order.id ? 'select format:' : 'selected'}
             </p>
 
-            {!orderData.id && <div className='products-container'>
+  
+            <div className='products-container'>
                 
                 { isLoading && <p>Loading...</p> }
                 { error && <p>{error}</p>}
-                { data && data.map(el => {
-                    return (
-
-                        <div className='product-container'>
-                            <ProductDisplay 
+                { data && !order.id && 
+                    data.map(el => {
+                        return (
+                            <div
                                 key={el.id}
-                                product={el} 
-                                selectProduct={selectProduct} 
-                            />
-                        </div>
-                    )
-                }) }
-            </div>}
-
-            {orderData.id &&
-            
-                <div>
-                    <ProductDisplay 
-                        key={orderData.id}
-                        product={data[orderData.id]} 
-                        selectProduct={selectProduct} 
-                    />
-                    <button 
-                        className='button' 
-                        type='button'
-                        onClick={clearOrderDataId}
-                        >return
-                    </button>
-                </div>
-            }
+                                onClick={() => handleProduct(el.id)}
+                                >< ProductDisplay product={el} />
+                            </div>
+                        )
+                    })
+                }
+                { order.id && 
+                    <div 
+                        onClick={resetProductId}
+                        >< ProductDisplay product={data[order.id -1]} />
+                    </div>
+                }
+            </div>
 
             <div className='quantity-container'>
                 <label
@@ -85,16 +75,14 @@ const OrderForm = () => {
                 </label>
                 <input 
                     className='quantity-input'
-                    value={orderData.quantity}
-                    onChange={selectQuantity}
+                    value={order.quantity}
+                    onChange={handleQuantity}
                     id='form-quantity'
                     type='number'
                     max={20}
                     min={1}
                 />
             </div>
-            
-
             
             <button 
                 className='order-submit-button button'
