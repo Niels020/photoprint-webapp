@@ -179,3 +179,15 @@ footer {
     margin-right: 1rem;
     
 }
+
+/* TESTING STUFF OUT */
+
+.custom-orderpage-link {
+    border: white 3px solid;
+    padding: 3px;
+    margin-top: 5px;
+    border-radius: 50%;
+    position: fixed;
+    right: 5px;
+    cursor: pointer;
+}
