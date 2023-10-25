@@ -1,7 +1,10 @@
 
-.form-container {
+.product-form-container,
+.customer-form-container {
     margin-top: 3rem;
 }
+
+/* --- PRODUCT STYLES --- */
 
 .products-container {
     max-height: 400px;
@@ -53,4 +56,11 @@
 
 .order-submit-button {
     margin-top: 2rem;
+}
+
+/* --- CUSTOMER STYLES --- */
+
+.customer-form-container {
+    display: flex;
+    flex-direction: column;
 }

@@ -1,8 +1,56 @@
-import './OrderForm.css'
+import useProductFormat from '../hooks/useProductFormat'
+import './Form.css'
 
-const OrderForm = ({ orderCollection }) => {
+const OrderForm = ({ orderCollection, products }) => {
 
-    async function postData(url = "", data = {}) {
+    const [ getInfo, getPrice ] = useProductFormat()
+
+    const confirmOrder = () => {
+        console.log('poep')
+    }
+
+    const displayOrder = () => {
+        return orderCollection.map(order => {
+            const [format, size, finish] = getInfo(products[order.id].name)
+            const quantity = order.quantity 
+            const price = getPrice(products[order.id].price) 
+            const totalPrice = getPrice(products[order.id].price, quantity) 
+
+            return (
+                <div>
+                    <p>{`${format} | ${size} | ${finish}`}</p>
+                    <p>{`price: ${price} | quantity: ${quantity}`}</p>
+                    <p>{`total: ${totalPrice}`}</p>
+                </div>
+            )
+        })
+    }
+
+
+
+    return (
+        <div>
+            {displayOrder()}
+
+            <button
+                className='button' 
+                onClick={() => confirmOrder()}
+                >confirm
+            </button>
+        </div>
+    )
+}
+
+export default OrderForm
+
+
+
+
+
+
+/*
+
+   async function postData(url = "", data = {}) {
         // Default options are marked with *
         const response = await fetch(url, {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -25,14 +73,4 @@ const OrderForm = ({ orderCollection }) => {
     //     console.log(res)
     // }
 
-    console.log(orderCollection)
-    return (
-        <div>
-            {/* display of customer order and total price */}
-
-            {/* customer info and adres form */}
-        </div>
-    )
-}
-
-export default OrderForm
+*/

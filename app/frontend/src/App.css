@@ -28,8 +28,8 @@
     font-family: var(--font-family-default);
 }
 
-image {
-    max-width: 100%;
+img {
+    width: 100%;
     display: block;
 }
 

@@ -1,5 +1,5 @@
-import ProductDisplay from '../components/ProductDisplay'
-import './ProductForm.css'
+import useProductFormat from '../hooks/useProductFormat'
+import './Form.css'
 
 const ProductForm = (
     { 
@@ -8,16 +8,15 @@ const ProductForm = (
         submitOrder, 
         addOrderId,  
         addOrderQuantity,
-        resetOrder,
         resetOrderId
     }) => {
+
+    const [ getInfo, getPrice ] = useProductFormat()
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
         submitOrder()
-        resetOrder()
-
     }
 
     const handleOrderId = (id) => {
@@ -31,30 +30,39 @@ const ProductForm = (
     }
 
     const displayProducts = () => {
-        return products.map(product => (
+        return products.map(product => {
 
-            <div key={product.id} onClick={() => handleOrderId(product.id)}>
-                < ProductDisplay product={product} />
-            </div>
-        ))
+            const [format, size, finish] = getInfo(product.name)
+            const price = getPrice(product.price)
+
+            return (
+                <div key={product.id} onClick={() => handleOrderId(product.id)}>
+                    <p>{`${format} | ${size} | ${finish}`}</p>
+                    <p>{`price: ${price}`}</p>
+                </div>
+            )
+        })
     }
 
     const displayProduct = () => {
+        const [format, size, finish] = getInfo(products[order.id].name)
+        const price = getPrice(products[order.id].price)
+
         return (
             <div onClick={resetOrderId}>
-                < ProductDisplay product={products[order.id -1]} />
+                <p>{`${format} | ${size} | ${finish}`}</p>
+                <p>{`price: ${price}`}</p>
             </div>
         )
-
     }
 
     return (
-        <form onSubmit={handleSubmit} className='form-container'>
+        <form onSubmit={handleSubmit} className='product-form-container'>
 
             <div className='products-container'>
                 
                 { 
-                    products && !order.id && 
+                    !order.id && 
                         displayProducts()
                 }
                 { 

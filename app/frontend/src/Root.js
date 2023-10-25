@@ -1,7 +1,6 @@
 import { Link, Outlet } from 'react-router-dom'
 
 const Root = () => {
-    
     return (
         <div className='container'>
 

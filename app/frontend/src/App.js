@@ -1,4 +1,3 @@
-import { createContext } from 'react'
 import { 
     createBrowserRouter, 
     createRoutesFromElements, 
@@ -25,9 +24,7 @@ const App = () => {
     )
 
     return (
-        <>
-            <RouterProvider router={router}/>
-        </>
+        <RouterProvider router={router}/>
     )
 }
 

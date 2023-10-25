@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import  useFetch  from '../hooks/useFetch'
-import ImageModal from '../components/ImageModal'
+import useFetch  from '../hooks/useFetch'
 import ProductForm from '../forms/ProductForm'
 import OrderForm from '../forms/OrderForm'
+import CustomerForm from '../forms/CustomerForm'
 import Modal from '../components/Modal'
 
 const Shop = () => {
@@ -10,9 +10,20 @@ const Shop = () => {
     const [order, setOrder] = useState({id: null, quantity: 1})
     const [orderCollection, setOrderCollection] = useState([])
     const [selectedImage, setSelectedImage] = useState(null)
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const [isOrderFormOpen, setIsOrderFormOpen] = useState(false)
+    const [isImageModalOpen, setIsImageModalOpen] = useState(false)
+    const [isOrderFormModalOpen, setIsOrderFormModalOpen] = useState(false)
     const [products, isLoading, error] = useFetch('http://localhost:8080/product_definition/all')
+
+    // TEST DATA ==========================
+    // const filltestData = () => {
+    //     setOrderCollection([
+    //         {id: 2, quantity: 3},
+    //         {id: 4, quantity: 2},
+    //         {id: 5, quantity: 1}
+    //     ])
+    // }
+    // useEffect(() => filltestData, [])
+    // TEST DATA ==========================
 
     const handleImageUpload = (e) => {
         const file = e.target.files[0]
@@ -23,37 +34,52 @@ const Shop = () => {
     }
 
     const addToOrderCollection = () => {
-        setOrderCollection(prevOrderCollection => [...prevOrderCollection, order])
-    }
+        const match = orderCollection.find(el => el.id === order.id)
 
-    const addOrderId = (orderId) => {
-        setOrder(prevOrder => ({ ...prevOrder, id: orderId}))
-    }
-
-    const addOrderQuantity = (orderQuantity) => {
-        setOrder(prevOrder => ({ ...prevOrder, quantity: orderQuantity}))
-    }
-
-    const resetOrder = () => {
+        if(!match) {
+            setOrderCollection(prev => [...prev, order])
+        } else {
+            setOrderCollection(prev => prev.map(el => {
+                return el.id === match.id ? 
+                    {id: el.id, quantity: el.quantity + match.quantity} : el    
+            }))
+        }
+        
         setOrder({id: null, quantity: 1})
     }
 
+    const addOrderId = (orderId) => {
+        setOrder(prev => ({...prev, id: orderId}))
+    }
+
+    const addOrderQuantity = (orderQuantity) => {
+        setOrder(prev => ({...prev, quantity: orderQuantity}))
+    }
+
     const resetOrderId = () => {
-        setOrder(prevOrder => ({...prevOrder, id: null}))
+        setOrder(prev => ({...prev, id: null}))
     }
 
-    const openOrderForm = () => {
-        setIsOrderFormOpen(true)
+    const openOrderFormModal = () => {
+        setIsOrderFormModalOpen(true)
     }
 
-    const closeOrderForm = () => {
-        setIsOrderFormOpen(false)
+    const closeOrderFormModal = () => {
+        setIsOrderFormModalOpen(false)
     }
+
+    const openImageModal = () => {
+        setIsImageModalOpen(true)
+    }
+
+    const closeImageModal = () => {
+        setIsImageModalOpen(false)
+    }
+
 
     return (
-
+     
         <div className='page'>
-
             <div className='hero-bg-img'></div>
 
             <h2 className='subtitle'>photo shop</h2>
@@ -70,7 +96,7 @@ const Shop = () => {
                 id='input'
                 type='file'
                 accept='image/*'
-                onChange={ handleImageUpload }
+                onChange={handleImageUpload}
             />
 
             <label
@@ -87,16 +113,20 @@ const Shop = () => {
                     <button 
                         className='button' 
                         type='button' 
-                        onClick={() => setIsModalOpen(true)}
+                        onClick={openImageModal}
                         >preview image
                     </button> 
             }
 
-            <ImageModal
-                isOpen={ isModalOpen }
-                onClose={ () => setIsModalOpen(false) }
-                imageUrl={ selectedImage }
-            />
+            { 
+                isImageModalOpen &&
+                    <Modal closeModal={closeImageModal}>
+                        <img 
+                            src={selectedImage} 
+                            alt='preview of your uploaded file'
+                        />
+                    </Modal>
+            }
 
             { 
                 selectedImage &&
@@ -116,7 +146,6 @@ const Shop = () => {
                         submitOrder={addToOrderCollection} 
                         addOrderId={addOrderId}
                         addOrderQuantity={addOrderQuantity}
-                        resetOrder={resetOrder}
                         resetOrderId={resetOrderId}
                     />
             }
@@ -126,16 +155,25 @@ const Shop = () => {
                 orderCollection.length !== 0 &&
                     <div 
                         className='custom-orderpage-link'
-                        onClick={openOrderForm}>
+                        onClick={openOrderFormModal}>
                         Order
                     </div>
             }
 
             {
-                isOrderFormOpen && 
-                    <Modal closeModal={closeOrderForm}>
-                        <OrderForm orderCollection={orderCollection} />
+                isOrderFormModalOpen && 
+                    <Modal closeModal={closeOrderFormModal}>
+                        <OrderForm 
+                            orderCollection={orderCollection}
+                            products={products}
+                        />
                     </Modal>
+            }
+
+            {
+                <Modal>
+                    <CustomerForm/>
+                </Modal>
             }
 
         </div>
